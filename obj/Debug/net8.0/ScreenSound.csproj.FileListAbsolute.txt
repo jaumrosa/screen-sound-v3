@@ -12,3 +12,4 @@ C:\Users\Computador\Desktop\Projetos\C#\screen-sound-v3\obj\Debug\net8.0\refint\
 C:\Users\Computador\Desktop\Projetos\C#\screen-sound-v3\obj\Debug\net8.0\ScreenSound.pdb
 C:\Users\Computador\Desktop\Projetos\C#\screen-sound-v3\obj\Debug\net8.0\ScreenSound.genruntimeconfig.cache
 C:\Users\Computador\Desktop\Projetos\C#\screen-sound-v3\obj\Debug\net8.0\ref\ScreenSound.dll
+C:\Users\Computador\Desktop\Projetos\C#\screen-sound-v3\obj\Debug\net8.0\ScreenSound.sourcelink.json
