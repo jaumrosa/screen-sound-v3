@@ -66,7 +66,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
 ## 📸 Screenshot
 
 Veja a aplicação em ação, exibindo o resumo gerado pela IA para a banda:
-![Screenshot do Screen Sound em funcionamento](./.github/funcionamento.png)
+![Screenshot do Screen Sound em funcionamento](./funcionamento.png)
 
 ---
 Feito por João Pedro Rosa :D
