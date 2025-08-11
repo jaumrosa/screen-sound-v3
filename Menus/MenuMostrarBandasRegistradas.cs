@@ -1,13 +1,13 @@
+using ScreenSound.API;
 using ScreenSound.Modelos;
 
 namespace ScreenSound.Menus;
 
 internal class MenuMostrarBandasRegistradas : Menu
 {
-
-    public override void Executar(Dictionary<string, Banda> bandasRegistradas)
+    public override async Task Executar(Dictionary<string, Banda> bandasRegistradas, ChatGptService chatGptService)
     {
-        base.Executar(bandasRegistradas);
+        await base.Executar(bandasRegistradas, chatGptService);
         ExibirTituloDaOpcao("Exibindo todas as bandas registradas na nossa aplicação");
 
         foreach (string banda in bandasRegistradas.Keys)

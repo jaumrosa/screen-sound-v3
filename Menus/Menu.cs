@@ -1,3 +1,4 @@
+using ScreenSound.API;
 using ScreenSound.Modelos;
 
 namespace ScreenSound.Menus;
@@ -13,6 +14,11 @@ internal class Menu
         Console.WriteLine(asteriscos + "\n");
     }
 
+    public virtual async Task Executar(Dictionary<string, Banda> bandasRegistradas, ChatGptService chatGptService)
+    {
+        Console.Clear();
+        await Task.CompletedTask;
+    }
     public virtual void Executar(Dictionary<string, Banda> bandasRegistradas)
     {
         Console.Clear();

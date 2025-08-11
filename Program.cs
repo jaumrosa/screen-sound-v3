@@ -1,14 +1,28 @@
-﻿using ScreenSound.Menus;
+﻿using Microsoft.Extensions.Configuration;
+using ScreenSound.API; 
+using ScreenSound.Menus;
 using ScreenSound.Modelos;
 
-Banda ira = new("Ira!");
-ira.AdicionarNota(new Avaliacao(10));
-ira.AdicionarNota(new Avaliacao(8));
-ira.AdicionarNota(new Avaliacao(6));
+
+var builder = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddUserSecrets<Program>();
+
+var configuration = builder.Build();
+string apiKey = configuration["OpenAI_ApiKey"]!;
+
+
+ChatGptService chatGptService = new(apiKey);
+
+
+Banda linkinPark = new("Linkin Park");
+linkinPark.AdicionarNota(new Avaliacao(10));
+linkinPark.AdicionarNota(new Avaliacao(8));
+linkinPark.AdicionarNota(new Avaliacao(6));
 Banda beatles = new("The Beatles");
 
 Dictionary<string, Banda> bandasRegistradas = new();
-bandasRegistradas.Add(ira.Nome, ira);
+bandasRegistradas.Add(linkinPark.Nome, linkinPark);
 bandasRegistradas.Add(beatles.Nome, beatles);
 
 Dictionary<int, Menu> opcoes = new();
@@ -19,6 +33,7 @@ opcoes.Add(4, new MenuAvaliarBanda());
 opcoes.Add(5, new MenuAvaliarAlbum());
 opcoes.Add(6, new MenuExibirDetalhes());
 opcoes.Add(-1, new MenuSair());
+
 void ExibirLogo()
 {
     Console.WriteLine(@"
@@ -30,10 +45,10 @@ void ExibirLogo()
 ██████╔╝╚█████╔╝██║░░██║███████╗███████╗██║░╚███║  ██████╔╝╚█████╔╝╚██████╔╝██║░╚███║██████╔╝
 ╚═════╝░░╚════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚═╝░░╚══╝  ╚═════╝░░╚════╝░░╚═════╝░╚═╝░░╚══╝╚═════╝░
 ");
-    Console.WriteLine("Boas vindas ao Screen Sound 2.0!");
+    Console.WriteLine("Boas vindas ao Screen Sound 3.0 - Agora com IA!");
 }
 
-void ExibirOpcoesDoMenu()
+async Task ExibirOpcoesDoMenu()
 {
     ExibirLogo();
     Console.WriteLine("\nDigite 1 para registrar uma banda");
@@ -51,14 +66,20 @@ void ExibirOpcoesDoMenu()
     if (opcoes.ContainsKey(opcaoEscolhidaNumerica))
     {
         Menu menuASerExibido = opcoes[opcaoEscolhidaNumerica];
-        menuASerExibido.Executar(bandasRegistradas);
-        if (opcaoEscolhidaNumerica > 0) ExibirOpcoesDoMenu();
+        
+        await menuASerExibido.Executar(bandasRegistradas, chatGptService);
+
+        if (opcaoEscolhidaNumerica > 0)
+        {
+            await ExibirOpcoesDoMenu();
+        }
     }
     else
     {
         Console.WriteLine("Opção inválida");
+        Thread.Sleep(1000);
+        await ExibirOpcoesDoMenu();
     }
-
 }
 
-ExibirOpcoesDoMenu();
+await ExibirOpcoesDoMenu();

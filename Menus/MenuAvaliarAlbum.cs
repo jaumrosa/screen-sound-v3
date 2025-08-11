@@ -1,18 +1,18 @@
+using ScreenSound.API;
 using ScreenSound.Modelos;
 
 namespace ScreenSound.Menus;
 
 internal class MenuAvaliarAlbum : Menu
 {
-    public override void Executar(Dictionary<string, Banda> bandasRegistradas)
+    public override async Task Executar(Dictionary<string, Banda> bandasRegistradas, ChatGptService chatGptService)
     {
-        base.Executar(bandasRegistradas);
+        await base.Executar(bandasRegistradas, chatGptService);
         ExibirTituloDaOpcao("Avaliar álbum");
         Console.Write("Digite o nome da banda que deseja avaliar: ");
         string nomeDaBanda = Console.ReadLine()!;
         if (bandasRegistradas.ContainsKey(nomeDaBanda))
         {
-
             Banda banda = bandasRegistradas[nomeDaBanda];
             Console.Write("Agora digite o título do álbum: ");
             string tituloAlbum = Console.ReadLine()!;
@@ -28,13 +28,11 @@ internal class MenuAvaliarAlbum : Menu
             }
             else
             {
-                Console.WriteLine($"\nO Album{tituloAlbum} não foi encontrado!");
+                Console.WriteLine($"\nO Album {tituloAlbum} não foi encontrado!");
                 Console.WriteLine("Digite uma tecla para voltar ao menu principal");
                 Console.ReadKey();
                 Console.Clear();
             }
-
-            
         }
         else
         {

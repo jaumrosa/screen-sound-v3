@@ -1,12 +1,13 @@
+using ScreenSound.API;
 using ScreenSound.Modelos;
 
 namespace ScreenSound.Menus;
 
 internal class MenuAvaliarBanda : Menu
 {
-    public override void Executar(Dictionary<string, Banda> bandasRegistradas)
+    public override async Task Executar(Dictionary<string, Banda> bandasRegistradas, ChatGptService chatGptService)
     {
-        base.Executar(bandasRegistradas);
+        await base.Executar(bandasRegistradas, chatGptService);
         ExibirTituloDaOpcao("Avaliar banda");
         Console.Write("Digite o nome da banda que deseja avaliar: ");
         string nomeDaBanda = Console.ReadLine()!;

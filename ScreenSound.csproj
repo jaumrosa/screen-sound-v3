@@ -1,10 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <UserSecretsId>105f330d-569a-4942-9b4f-10a2f42d3ae7</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+
+    <PackageReference Include="Betalgo.OpenAI" Version="8.7.2" />
+
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="8.0.0" />
+
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
+  </ItemGroup>
 
 </Project>
